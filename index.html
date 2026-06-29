@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Kurumsal sistemler bilgi portalı</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Betikler ve Süreçler Belgeleri">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  
+  <!-- Theme: Vue (Green/White Light Theme) -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  
+  <!-- Google Fonts: Outfit & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --theme-color: #42b983; /* Vue Green Accent */
+      --docsifytabs-border-color: #eaecef;
+      --docsifytabs-tab-background: #f8f9fa;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background-color: #ffffff;
+      color: #2c3e50;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Premium Light Sidebar */
+    .sidebar {
+      background-color: #ffffff !important;
+      border-right: 1px solid #eaecef;
+      box-shadow: none;
+    }
+
+    .sidebar-nav li a {
+      color: #34495e !important;
+      font-weight: 500;
+      transition: all 0.25s ease;
+      border-radius: 8px;
+      padding: 8px 16px;
+      margin: 4px 12px;
+      display: block;
+      border: none !important;
+    }
+
+    .sidebar-nav li a:hover {
+      color: #42b983 !important;
+      background-color: #f0faf5;
+      transform: translateX(4px);
+    }
+
+    .sidebar-nav li.active > a {
+      color: #42b983 !important;
+      font-weight: 600;
+      background: linear-gradient(90deg, rgba(66, 185, 131, 0.1) 0%, rgba(66, 185, 131, 0.02) 100%) !important;
+      border-left: 4px solid #42b983 !important;
+    }
+
+    .sidebar-nav strong {
+      color: #2c3e50;
+      font-weight: 700;
+      font-size: 0.9em;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 16px 12px 8px 12px;
+      display: block;
+    }
+
+    /* Custom Search Input */
+    .sidebar .search {
+      padding: 16px 12px 10px 12px;
+      border-bottom: 1px solid #eaecef;
+    }
+
+    .sidebar .search input {
+      background-color: #f8f9fa !important;
+      border: 1px solid #e2e8f0 !important;
+      color: #2c3e50 !important;
+      border-radius: 8px !important;
+      padding: 10px 12px 10px 32px !important;
+      font-family: 'Outfit', sans-serif;
+      transition: all 0.2s ease;
+    }
+
+    .sidebar .search input:focus {
+      border-color: #42b983 !important;
+      box-shadow: 0 0 0 3px rgba(66, 185, 131, 0.2) !important;
+    }
+
+    .sidebar .search .clear-button {
+      top: 26px !important;
+      right: 20px !important;
+    }
+
+    /* Global Navbar styling */
+    .app-nav {
+      margin: 20px 30px;
+    }
+
+    .app-nav a {
+      color: #34495e !important;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 20px;
+      transition: all 0.2s ease;
+      margin-left: 10px;
+      border: 1px solid transparent;
+    }
+
+    .app-nav a:hover, .app-nav a.active {
+      color: #42b983 !important;
+      background-color: #f0faf5;
+      border-color: #e2e8f0;
+    }
+
+    .app-nav a.active {
+      background: linear-gradient(135deg, #42b983 0%, #359f6e 100%);
+      color: #ffffff !important;
+      border: none;
+      box-shadow: 0 4px 12px rgba(66, 185, 131, 0.3);
+    }
+
+    /* Main Content Styling */
+    .markdown-section {
+      max-width: 900px !important;
+      padding: 50px 20px !important;
+      color: #2c3e50;
+    }
+
+    .markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4 {
+      color: #2c3e50;
+      font-weight: 600;
+      margin-top: 1.8em;
+    }
+
+    .markdown-section h1 {
+      font-size: 2.5rem;
+      border-bottom: 1px solid #eaecef;
+      padding-bottom: 0.4em;
+      margin-top: 0.5em;
+    }
+
+    .markdown-section h2 {
+      font-size: 1.85rem;
+      border-bottom: 1px solid #f8f9fa;
+      padding-bottom: 0.3em;
+    }
+
+    .markdown-section a {
+      color: #42b983;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .markdown-section a:hover {
+      color: #359f6e;
+      border-bottom-color: #359f6e;
+    }
+
+    /* Inline Code and Block Code */
+    .markdown-section code {
+      background-color: #f8f9fa !important;
+      color: #e91e63 !important; /* Pink Accent for inline code */
+      font-family: 'Fira Code', monospace;
+      padding: 3px 6px !important;
+      border-radius: 6px;
+      font-size: 0.9em;
+    }
+
+    .markdown-section pre {
+      background-color: #f8f9fa !important;
+      border: 1px solid #eaecef;
+      border-radius: 10px;
+      box-shadow: none;
+      padding: 0 !important;
+      overflow: hidden;
+    }
+
+    .markdown-section pre code {
+      background-color: transparent !important;
+      color: #2c3e50 !important;
+      padding: 20px !important;
+      border-radius: 0;
+      display: block;
+      font-size: 0.9em;
+      line-height: 1.6;
+    }
+
+    /* Quote blocks / Callouts */
+    .markdown-section blockquote {
+      border-left: 4px solid #42b983;
+      background-color: #f8f9fa;
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 24px 0;
+      color: #475669;
+    }
+
+    .markdown-section blockquote p {
+      margin: 0;
+    }
+
+    /* Landing page grids */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .portal-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      border: 1px solid #eaecef;
+      border-radius: 14px;
+      padding: 30px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none !important;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    .portal-card:hover {
+      transform: translateY(-6px);
+      border-color: #42b983;
+      box-shadow: 0 12px 30px rgba(66, 185, 131, 0.15);
+    }
+
+    .portal-card h3 {
+      margin: 0 0 12px 0 !important;
+      color: #2c3e50 !important;
+      font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .portal-card p {
+      color: #475669;
+      font-size: 1rem;
+      line-height: 1.6;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .portal-card-arrow {
+      color: #42b983;
+      font-weight: bold;
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease;
+    }
+
+    .portal-card:hover .portal-card-arrow {
+      transform: translateX(4px);
+    }
+
+    /* Copy Code Button */
+    .docsify-copy-code-button {
+      background: #ffffff !important;
+      color: #34495e !important;
+      border: 1px solid #eaecef !important;
+      border-radius: 6px !important;
+      padding: 6px 10px !important;
+      font-family: 'Outfit', sans-serif !important;
+      font-size: 0.8em !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .docsify-copy-code-button:hover {
+      background: #42b983 !important;
+      color: #ffffff !important;
+      border-color: #42b983 !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">Yukleniyor...</div>
+  <script>
+    window.$docsify = {
+      name: 'Kurumsal sistemler bilgi portalı',
+      repo: '',
+      loadSidebar: true,
+      loadNavbar: true,
+      subMaxLevel: 3,
+      auto2top: true,
+      
+      // Alias routing to implement navbar split sidebars
+      alias: {
+        '/betikler/_sidebar.md': '/betikler/_sidebar.md',
+        '/surecler/_sidebar.md': '/surecler/_sidebar.md',
+        '/betikler/.*/_sidebar.md': '/betikler/_sidebar.md',
+        '/surecler/.*/_sidebar.md': '/surecler/_sidebar.md',
+        '/.*/_sidebar.md': '/_sidebar.md' // Fallback for root files
+      },
+
+      // Search customization
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: 'Ara...',
+        noData: 'Sonuc bulunamadi!',
+        depth: 6,
+        hideOtherSidebarContent: false
+      },
+
+      // Code copy button customization
+      copyCode: {
+        buttonText: 'Kopyala',
+        errorText: 'Hata',
+        successText: 'Kopyalandi'
+      }
+    }
+  </script>
+  <!-- Docsify v4 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  
+  <!-- Plugins -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+</body>
+</html>
